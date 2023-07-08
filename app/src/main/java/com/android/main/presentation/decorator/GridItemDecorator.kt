@@ -1,4 +1,4 @@
-package com.android.main.presentation
+package com.android.main.presentation.decorator
 
 import android.content.Context
 import android.graphics.Rect
@@ -6,7 +6,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemOffsetDecorator(private val context: Context): RecyclerView.ItemDecoration() {
+class GridItemDecorator(private val context: Context, private val size: Int): RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -14,10 +14,11 @@ class ItemOffsetDecorator(private val context: Context): RecyclerView.ItemDecora
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val offset = 10.FromDpToPx(context)
+        val offset = size.FromDpToPx(context)
 
         with(outRect) {
             right = offset
+            bottom = offset
         }
     }
 

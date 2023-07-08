@@ -11,11 +11,32 @@
                 <ImageView
                     android:id="@+id/moviePoster"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="330dp"
+                    android:scaleType="fitCenter"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    tools:src="@drawable/ic_launcher_background"
                     />
+
+                <ImageButton
+                    android:id="@+id/buttonLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/moviePoster"
+                    style="@style/MovieDetailButton"
+                    android:src="@drawable/ic_like"
+                    />
+            <com.android.main.presentation.FragmentTopView
+                android:id="@+id/fragmentTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
             <LinearLayout
                 android:id="@+id/movieDescLayout"
                 android:layout_width="match_parent"
@@ -30,6 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textFontWeight="700"
+                    android:visibility="gone"
                     android:textSize="@dimen/regular_font_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="20dp"
@@ -62,17 +84,66 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/movieGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detail_vertical_margin"
+                app:layout_constraintTop_toBottomOf="@+id/movieStaff"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+                <TextView
+                    android:id="@+id/movieGallerylistTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/horizontal_margin"
+                    style="@style/ListTitle"
+                    android:text="@string/movie_detail_gallery"
+                    />
+                <Button
+                    android:id="@+id/movieGalleryButtonMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/horizontal_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/movieGallerylistTitle"
+                    style="@style/LinkButton"
+                    android:drawableEnd="@drawable/ic_arrow_right_small"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/movieGalleryList"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="@dimen/horizontal_margin"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/movieGallerylistTitle"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/gallery_horizontal_card_fragment"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <com.android.main.presentation.moveiList.MovieHorizontalListView
                 android:id="@+id/movieSimilar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/detail_vertical_margin"
                 custom:title="@string/movie_detail_similar"
+                custom:hideMoreButton="true"
                 app:isCountable="true"
-                app:layout_constraintTop_toBottomOf="@+id/movieStaff"
+                app:layout_constraintTop_toBottomOf="@+id/movieGallery"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
+
             <LinearLayout
                 android:id="@+id/loading"
                 android:layout_width="0dp"

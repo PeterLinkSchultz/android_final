@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/listTitle"
         style="@style/LinkButton"
-        android:drawableEnd="@{isCountable ? @drawable/arrow_right_small : @drawable/button_link}"
+        android:drawableEnd="@{isCountable ? @drawable/ic_arrow_right_small : @drawable/button_link}"
         />
 
     <androidx.recyclerview.widget.RecyclerView

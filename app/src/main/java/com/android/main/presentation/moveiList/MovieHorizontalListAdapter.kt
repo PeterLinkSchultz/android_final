@@ -1,18 +1,20 @@
 package com.android.main.presentation.moveiList
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.main.data.movie.MovieShortDto
 import com.android.main.databinding.MovieCardFragmentBinding
 import com.android.main.databinding.MovieMoreCardFragmentBinding
-import com.android.main.entity.Movie
 import com.bumptech.glide.Glide
 
 class MovieHorizontalListAdapter(
     private val onItemClick: (movieId: Int) -> Unit,
-    private val onAllClick: () -> Unit
+    private val onAllClick: () -> Unit,
+    private val hideMoreButton: Boolean
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var data: List<Movie> = listOf()
+    private var data: List<MovieShortDto> = listOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,12 +33,16 @@ class MovieHorizontalListAdapter(
                 val item = data[position]
 
                 holder.binding.root.setOnClickListener {
-                    onItemClick(item.kinopoiskId)
+                    (item.kinopoiskId ?: item.filmId)?.let { id -> onItemClick(id) }
                 }
                 holder.binding.movieCardTitle.text = item.nameRu
                 Glide.with(holder.binding.root)
                     .load(item.posterUrlPreview)
-                    .into(holder.binding.movieCardImage);
+                    .into(holder.binding.movieCardImage)
+                item.ratingImdb?.let {
+                    holder.binding.movieCardRate.text = it.toString()
+                    holder.binding.movieCardRate.visibility = View.VISIBLE
+                }
             }
             is MovieHorizontalMoreViewHolder -> {
                 holder.binding.buttonMore.setOnClickListener {
@@ -51,10 +57,10 @@ class MovieHorizontalListAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (position != data.size - 1) TYPE_ITEM else TYPE_MORE
+        return if (hideMoreButton || position != data.size - 1) TYPE_ITEM else TYPE_MORE
     }
 
-    fun setData(newData: List<Movie>) {
+    fun setData(newData: List<MovieShortDto>) {
         data = newData
 
         notifyDataSetChanged()

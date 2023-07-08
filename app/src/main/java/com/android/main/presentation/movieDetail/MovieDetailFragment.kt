@@ -14,6 +14,8 @@ import com.android.main.databinding.MovieDetailFragmentBinding
 import com.android.main.di.DaggerAppComponent
 import com.android.main.entity.Movie
 import com.android.main.presentation.LoadDataState
+import com.android.main.presentation.decorator.HorizontalItemDecorator
+import com.android.main.presentation.galleryList.GalleryHorizontalListAdapter
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 
@@ -21,6 +23,7 @@ class MovieDetailFragment: Fragment() {
 
     private var _binding: MovieDetailFragmentBinding? = null
     private val binding get() = _binding!!
+    private lateinit var galleryAdapter: GalleryHorizontalListAdapter
 
     private val viewModel: MovieDetailViewModel by viewModels {
         DaggerAppComponent.create().movieDetailViewModelFactory()
@@ -42,6 +45,13 @@ class MovieDetailFragment: Fragment() {
         if (movieId != null) {
             viewModel.loadData(movieId)
         }
+        with(binding.movieGalleryList) {
+            galleryAdapter = GalleryHorizontalListAdapter()
+            adapter = galleryAdapter
+
+            addItemDecoration(HorizontalItemDecorator(context, 8))
+            setHasFixedSize(true)
+        }
         viewModel.movieData.observe(viewLifecycleOwner) {
             when (it) {
                 is LoadDataState.Loading -> binding.loading.visibility = View.VISIBLE
@@ -59,7 +69,14 @@ class MovieDetailFragment: Fragment() {
             .load(movie.movieDetail.posterUrl)
             .into(binding.moviePoster);
         binding.movieDesc.text = movie.movieDetail.description
-        binding.movieShortDesc.text = movie.movieDetail.shortDescription
+
+        movie.movieDetail.shortDescription?.let { text ->
+            binding.movieShortDesc.apply {
+                binding.movieShortDesc.visibility = View.VISIBLE
+                binding.movieShortDesc.text = text
+            }
+        }
+
 
         movie.staffList.filter {
             it.professionKey == Profession.ACTOR
@@ -70,6 +87,12 @@ class MovieDetailFragment: Fragment() {
             it.professionKey != Profession.ACTOR
         }.apply {
             binding.movieStaff.setData(this, this.size)
+        }
+        galleryAdapter.setData(movie.gallery.items)
+
+        binding.movieGalleryButtonMore.text = movie.gallery.total.toString()
+        movie.similarList.apply {
+            binding.movieSimilar.setData(this.items, this.total)
         }
     }
 }

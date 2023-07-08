@@ -11,9 +11,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.main.R
+import com.android.main.data.movie.MovieShortDto
 import com.android.main.databinding.MovieHorizontalListViewBinding
-import com.android.main.entity.Movie
-import com.android.main.presentation.ItemOffsetDecorator
+import com.android.main.presentation.decorator.HorizontalItemDecorator
 
 class MovieHorizontalListView
 @JvmOverloads constructor(
@@ -28,18 +28,16 @@ class MovieHorizontalListView
     init {
         binding.root.layoutParams = ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(binding.root)
-        listAdapter = MovieHorizontalListAdapter({ movieId -> navigateToDetail(movieId) }, {
-            navigateToAll()
-        })
 
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.HorizontalListView,
             0, 0).apply {
             try {
-                Log.i("List view: title", getString(R.styleable.HorizontalListView_title).toString())
+                listAdapter = MovieHorizontalListAdapter({ movieId -> navigateToDetail(movieId) }, {
+                    navigateToAll()
+                }, getBoolean(R.styleable.HorizontalListView_hideMoreButton, false))
                 binding.listTitle.text = getString(R.styleable.HorizontalListView_title)
-                Log.i("List view: isCountable", getBoolean(R.styleable.HorizontalListView_isCountable, false).toString())
                 binding.isCountable = getBoolean(R.styleable.HorizontalListView_isCountable, false)
             } finally {
                 recycle()
@@ -50,13 +48,17 @@ class MovieHorizontalListView
             adapter = listAdapter
             layoutManager = LinearLayoutManager(this@MovieHorizontalListView.context, RecyclerView.HORIZONTAL, false)
 
-            addItemDecoration(ItemOffsetDecorator(context))
+            addItemDecoration(HorizontalItemDecorator(context, 8))
             setHasFixedSize(true)
         }
     }
 
-    fun setData(data: List<Movie>): MovieHorizontalListView {
+    fun setData(data: List<MovieShortDto>, count: Int? = null): MovieHorizontalListView {
         listAdapter.setData(data)
+
+        count?.let {
+            binding.buttonMore.text = count.toString()
+        }
 
         return this
     }

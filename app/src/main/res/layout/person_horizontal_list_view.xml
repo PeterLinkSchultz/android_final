@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/listTitle"
         style="@style/LinkButton"
-        android:drawableEnd="@drawable/arrow_right_small"
+        android:drawableEnd="@drawable/ic_arrow_right_small"
         />
 
     <androidx.recyclerview.widget.RecyclerView

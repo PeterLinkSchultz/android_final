@@ -1,7 +1,5 @@
 package com.android.main.presentation.personList
 
-import com.android.main.presentation.ItemOffsetDecorator
-import com.android.main.presentation.moveiList.MovieHorizontalListAdapter
 
 import android.content.Context
 import android.util.AttributeSet
@@ -19,6 +17,7 @@ import com.android.main.data.staff.StaffDto
 import com.android.main.databinding.MovieHorizontalListViewBinding
 import com.android.main.databinding.PersonHorizontalListViewBinding
 import com.android.main.entity.Movie
+import com.android.main.presentation.decorator.GridItemDecorator
 
 class PersonHorizontalListView
 @JvmOverloads constructor(
@@ -50,7 +49,7 @@ class PersonHorizontalListView
             adapter = listAdapter
             layoutManager = GridLayoutManager(this@PersonHorizontalListView.context, 4, RecyclerView.HORIZONTAL, false)
 
-            addItemDecoration(PersonItemOffsetDecorator(context))
+            addItemDecoration(GridItemDecorator(context, 8))
             setHasFixedSize(true)
         }
     }
