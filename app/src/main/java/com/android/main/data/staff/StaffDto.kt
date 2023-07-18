@@ -5,11 +5,10 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class StaffDto(
-    override val staffId: Int,
+    override val personId: Int,
     override val nameRu: String?,
     override val nameEn: String,
-    override val description: String?,
+    override val profession: String?,
     override val posterUrl: String,
-    override val professionText: String,
-    override val professionKey: Profession,
+    override val films: List<StaffMovieDto>
 ): Staff

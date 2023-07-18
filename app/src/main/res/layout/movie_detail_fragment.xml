@@ -41,7 +41,6 @@
                 android:id="@+id/movieDescLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/detail_vertical_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moviePoster"
                 android:orientation="vertical"
@@ -51,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textFontWeight="700"
-                    android:visibility="gone"
+                    android:visibility="visible"
+                    android:layout_marginTop="@dimen/detail_vertical_margin"
                     android:textSize="@dimen/regular_font_size"
                     android:textColor="@color/black"
                     android:layout_marginBottom="20dp"
@@ -63,8 +63,46 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/regular_font_size"
                     tools:text="Столкнувшись с неразрешимыми проблемами, пять молодых москвичей убегают в монастырь неподалеку от полузаброшенной деревни Топи. Они воспринимают.."/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/seasons"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/detail_vertical_margin"
+                    >
+                    <TextView
+                        android:id="@+id/seasonsTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seasons_and_serieses"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        style="@style/ListTitle"
+                        />
+                    <TextView
+                        android:id="@+id/seasonsInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CardSubTitle"
+                        tools:text="1 сезон, 7 серий"
+                        app:layout_constraintStart_toStartOf="@id/seasonsTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/seasonsTitle"
+                        />
+                    <Button
+                        android:id="@+id/buttonAllSeasons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/all_movies"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/seasonsTitle"
+                        style="@style/LinkButton"
+                        android:drawableEnd="@drawable/button_link"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-            <com.android.main.presentation.personList.PersonHorizontalListView
+            <com.android.main.presentation.person.PersonHorizontalListView
                 android:id="@+id/movieCast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +112,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
-            <com.android.main.presentation.personList.PersonHorizontalListView
+            <com.android.main.presentation.person.PersonHorizontalListView
                 android:id="@+id/movieStaff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +169,7 @@
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.android.main.presentation.moveiList.MovieHorizontalListView
+            <com.android.main.presentation.movie.MovieHorizontalListView
                 android:id="@+id/movieSimilar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +191,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent">
                 <ProgressBar

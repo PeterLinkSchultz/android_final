@@ -36,4 +36,8 @@ class FragmentTopView
             findNavController().popBackStack()
         }
     }
+
+    fun setTitle(title: String) {
+        binding.topTitle.text = title
+    }
 }

@@ -7,8 +7,10 @@ import com.squareup.moshi.JsonClass
 data class MovieShortDto(
     override val kinopoiskId: Int?,
     override val filmId: Int?,
-    override val nameRu: String,
+    override val nameRu: String?,
+    override val nameEn: String?,
     override val posterUrl: String,
     override val posterUrlPreview: String,
     override val ratingImdb: Double?,
+    override val genres: List<MovieGenre>?,
 ): MovieShort

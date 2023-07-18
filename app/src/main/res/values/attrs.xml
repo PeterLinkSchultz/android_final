@@ -4,5 +4,6 @@
         <attr name="title" format="string" />
         <attr name="isCountable" format="boolean" />
         <attr name="hideMoreButton" format="boolean" />
+        <attr name="navId" format="reference" />
     </declare-styleable>
 </resources>

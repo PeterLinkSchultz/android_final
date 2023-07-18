@@ -11,5 +11,6 @@ data class MovieDto(
     override val posterUrlPreview: String,
     override val ratingImdb: Double?,
     override val shortDescription: String?,
-    override val description: String?
+    override val description: String?,
+    override val serial: Boolean
 ) : Movie

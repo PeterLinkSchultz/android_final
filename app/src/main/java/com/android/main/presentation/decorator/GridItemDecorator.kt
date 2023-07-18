@@ -2,9 +2,9 @@ package com.android.main.presentation.decorator
 
 import android.content.Context
 import android.graphics.Rect
-import android.util.DisplayMetrics
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.android.main.extensions.FromDpToPx
 
 class GridItemDecorator(private val context: Context, private val size: Int): RecyclerView.ItemDecoration() {
 
@@ -20,9 +20,5 @@ class GridItemDecorator(private val context: Context, private val size: Int): Re
             right = offset
             bottom = offset
         }
-    }
-
-    private fun Int.FromDpToPx(context: Context): Int {
-        return this * context.resources.displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT
     }
 }

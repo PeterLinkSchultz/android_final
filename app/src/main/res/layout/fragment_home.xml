@@ -1,17 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.home.HomeFragment">
-
-    <com.android.main.presentation.moveiList.MovieHorizontalListView
-        custom:title="Премьеры"
-        custom:isCountable="false"
-        android:id="@+id/premieresList"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        tools:context=".presentation.home.HomeFragment">
 
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/premiers"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_premierCategoryListFragment"
+            android:id="@+id/premieresList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-</LinearLayout>
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/usa_action"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_usaActionCategoryListFragment"
+            android:id="@+id/usaActionList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/popular"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_popularCategoryListFragment"
+            android:id="@+id/popularList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/top"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_topCategoryListFragment"
+            android:id="@+id/topList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/french_drama"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_frenchDramaCategoryListFragment"
+            android:id="@+id/frenchDramaList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.main.presentation.movie.MovieHorizontalListView
+            custom:title="@string/series"
+            custom:isCountable="false"
+            custom:navId="@+id/action_navigation_home_to_seriesCategoryListFragment"
+            android:id="@+id/seriesList"
+            android:layout_marginBottom="@dimen/block_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

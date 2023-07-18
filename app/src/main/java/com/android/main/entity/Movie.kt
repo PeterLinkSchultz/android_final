@@ -8,4 +8,5 @@ interface Movie {
     val ratingImdb: Double?
     val shortDescription: String?
     val description: String?
+    val serial: Boolean
 }

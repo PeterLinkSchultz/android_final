@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">main</string>
     <string name="title_home">Home</string>
@@ -11,4 +12,53 @@
     <string name="movie_detail_gallery">Галерея</string>
     <string name="movie_detail_similar">Похожие фильмы</string>
     <string name="empty" />
+    <string name="premiers">Премьеры</string>
+    <string name="popular">Популярное</string>
+    <string name="top">Топ 250</string>
+    <string name="usa_action">Боевики США</string>
+    <string name="french_drama">Драмы Франции</string>
+    <string name="series">Сериалы</string>
+    <string name="series_season">Сезон</string>
+    <string name="seasons_and_serieses">Сезоны и серии</string>
+    <string name="episode_title">%d cерия. %s</string>
+    <string name="series_title">%d сезон, %s</string>
+    <string name="series_numbers">%s, %s</string>
+    <plurals name="season_counter">
+        <item quantity="one">%d сезон</item>
+        <item quantity="two">%d сезона</item>
+        <item quantity="few">%d сезона</item>
+        <item quantity="many">%d сезонов</item>
+        <item quantity="other">%d сезонов</item>
+    </plurals>
+    <plurals name="episodes_counter">
+        <item quantity="one">%d серия</item>
+        <item quantity="two">%d серии</item>
+        <item quantity="few">%d серии</item>
+        <item quantity="many">%d серий</item>
+        <item quantity="other">%d серий</item>
+    </plurals>
+    <string name="release_date">%s %s %s</string>
+    <string name="filmography_more">К списку</string>
+    <string name="filmography_title">Фильмография</string>
+    <plurals name="filmography_count">
+        <item quantity="one">%d фильм</item>
+        <item quantity="two">%d фильма</item>
+        <item quantity="few">%d фильма</item>
+        <item quantity="many">%d фильмов</item>
+        <item quantity="other">%d фильма</item>
+    </plurals>
+    <string-array name="release_month">
+        <item>января</item>
+        <item>февраля</item>
+        <item>марта</item>
+        <item>апреля</item>
+        <item>мая</item>
+        <item>июня</item>
+        <item>июля</item>
+        <item>августа</item>
+        <item>сентября</item>
+        <item>октября</item>
+        <item>ноября</item>
+        <item>декабря</item>
+    </string-array>
 </resources>

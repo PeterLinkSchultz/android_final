@@ -11,4 +11,6 @@ enum class Profession {
     VOICE_DIRECTOR,
     PRODUCER,
     DIRECTOR,
+    HIMSELF,
+    HRONO_TITR_MALE,
 }

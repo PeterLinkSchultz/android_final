@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.android.main.databinding.FragmentHomeBinding
 import com.android.main.di.DaggerAppComponent
+import com.android.main.presentation.LoadDataState
 import com.android.main.presentation.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -21,8 +22,6 @@ class HomeFragment : Fragment() {
         DaggerAppComponent.create().mainViewModelFactory()
     }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -30,16 +29,25 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        mainViewModel.loadPremieres()
+        mainViewModel.loadAllData()
 
-        mainViewModel.premieres.observe(viewLifecycleOwner) {
-            binding.premieresList.setData(it)
+        mainViewModel.allLists.observe(viewLifecycleOwner) {
+            when (it) {
+                is LoadDataState.Loading -> {}
+                is LoadDataState.Failure -> {}
+                is LoadDataState.Success -> {
+                    binding.premieresList.setData(it.model.premieres)
+                    binding.popularList.setData(it.model.popular)
+                    binding.topList.setData(it.model.top)
+                    binding.usaActionList.setData(it.model.usaActions)
+                    binding.frenchDramaList.setData(it.model.frenchDrams)
+                    binding.seriesList.setData(it.model.series)
+                }
+            }
         }
 
         return root
