@@ -5,6 +5,7 @@
     <dimen name="horizontal_margin">26dp</dimen>
     <dimen name="detail_vertical_margin">40dp</dimen>
     <dimen name="block_vertical_margin">36dp</dimen>
+    <dimen name="extra_small_font_size">6sp</dimen>
     <dimen name="small_font_size">12sp</dimen>
     <dimen name="medium_font_size">14sp</dimen>
     <dimen name="regular_font_size">16sp</dimen>

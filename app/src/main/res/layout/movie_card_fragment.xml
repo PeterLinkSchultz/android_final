@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="6dp"
         android:layout_marginTop="6dp"
-        style="@style/Label"
+        style="@style/BlueLabel"
         />
     <TextView
         android:id="@+id/movieCardTitle"

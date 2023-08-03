@@ -4,19 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.android.main.databinding.FragmentHomeBinding
+import com.android.main.databinding.HomeFragmentBinding
 import com.android.main.di.DaggerAppComponent
 import com.android.main.presentation.LoadDataState
 import com.android.main.presentation.MainViewModel
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: HomeFragmentBinding? = null
 
     private val mainViewModel: MainViewModel by viewModels {
         DaggerAppComponent.create().mainViewModelFactory()
@@ -30,7 +27,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = HomeFragmentBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         mainViewModel.loadAllData()

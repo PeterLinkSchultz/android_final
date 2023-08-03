@@ -30,7 +30,7 @@ class PersonHorizontalListView
     init {
         binding.root.layoutParams = ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         addView(binding.root)
-        listAdapter = PersonHorizontalListAdapter() {
+        listAdapter = PersonHorizontalListAdapter {
             navigateToDetail(it)
         }
 

@@ -2,6 +2,7 @@ package com.example.main.data
 
 import com.android.main.data.ItemsResponse
 import com.android.main.data.image.GalleryImageDto
+import com.android.main.data.image.ImageType
 import com.android.main.data.movie.MovieShortDto
 import com.android.main.data.movie.MovieDto
 import com.android.main.data.movie.MovieFilterParams
@@ -23,8 +24,8 @@ class KinopoiskRepository @Inject constructor(){
         return Network.kinopoiskApi.getStaffByMovieID(movieId)
     }
 
-    suspend fun getMovieImages(movieId: Int, page: Int): ItemsResponse<GalleryImageDto> {
-        return Network.kinopoiskApi.getImages(movieId, page)
+    suspend fun getMovieImages(movieId: Int, page: Int, type: ImageType?): ItemsResponse<GalleryImageDto> {
+        return Network.kinopoiskApi.getImages(movieId, page, type)
     }
 
     suspend fun getSimilarMovies(movieId: Int): ItemsResponse<MovieShortDto> {
@@ -43,8 +44,6 @@ class KinopoiskRepository @Inject constructor(){
             ratingTo = filterParams.ratingTo,
             yearFrom = filterParams.yearFrom,
             yearTo = filterParams.yearTo,
-            imdbId = filterParams.imdbId,
-            keyword = filterParams.keyword,
             page = filterParams.page,
         )
     }

@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/radioButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:orientation="horizontal">
+    <CheckedTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/large_font_size"
+        android:textFontWeight="500"
+        android:textColor="@color/rounded_radio_button_text"
+        android:layout_marginEnd="10dp"
+        tools:text="Actor"/>
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textFontWeight="500"
+        android:textColor="@color/text_gray"
+        tools:text="2"/>
+</LinearLayout>

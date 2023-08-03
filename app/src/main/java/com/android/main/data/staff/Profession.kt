@@ -12,5 +12,7 @@ enum class Profession {
     PRODUCER,
     DIRECTOR,
     HIMSELF,
+    HERSELF,
     HRONO_TITR_MALE,
+    HRONO_TITR_FEMALE,
 }

@@ -3,6 +3,7 @@ package com.example.main.data
 import com.android.main.data.ItemsResponse
 import com.android.main.data.movie.TopMoviesResponse
 import com.android.main.data.image.GalleryImageDto
+import com.android.main.data.image.ImageType
 import com.android.main.data.movie.MovieShortDto
 import com.android.main.data.movie.MovieDto
 import com.android.main.data.movie.MovieSeriesSeasonDto
@@ -34,7 +35,7 @@ interface KinopoiskApi {
     suspend fun getStaffByID(@Path("id") staffId: Int): StaffDto
 
     @GET("v2.2/films/{id}/images")
-    suspend fun getImages(@Path("id") id: Int, @Query("page") page: Int): ItemsResponse<GalleryImageDto>
+    suspend fun getImages(@Path("id") id: Int, @Query("page") page: Int, @Query("type") type: ImageType?): ItemsResponse<GalleryImageDto>
 
     @GET("v2.2/films/{id}/seasons")
     suspend fun getSeasons(@Path("id") id: Int): ItemsResponse<MovieSeriesSeasonDto>
@@ -48,8 +49,6 @@ interface KinopoiskApi {
         @Query("ratingTo") ratingTo: Int?,
         @Query("yearFrom") yearFrom: Int?,
         @Query("yearTo") yearTo: Int?,
-        @Query("imdbId") imdbId: String?,
-        @Query("keyword") keyword: String?,
         @Query("page") page: Int?,
     ): ItemsResponse<MovieShortDto>
 }

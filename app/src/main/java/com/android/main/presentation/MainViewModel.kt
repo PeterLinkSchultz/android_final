@@ -11,6 +11,9 @@ import com.android.main.domain.GetCountryGenreMoviesCase
 import com.android.main.domain.GetPremieresCase
 import com.android.main.domain.GetSeriesMoviesCase
 import com.android.main.domain.GetTopMoviesCase
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
@@ -28,18 +31,24 @@ class MainViewModel @Inject constructor(
     val allLists: LiveData<LoadDataState<AllLists>>
     get() = allListsLiveData
 
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        allListsLiveData.value = LoadDataState.Failure()
+        Log.e("Coroutine error", "${throwable.stackTraceToString()}")
+    }
+
     fun loadAllData() {
-        viewModelScope.launch {
+        val scope = CoroutineScope(viewModelScope.coroutineContext + exceptionHandler)
+
+        scope.launch {
             allListsLiveData.value = LoadDataState.Loading()
 
-            val premieres = async { getPremieresCase.execute().items }
-            val popular = async { getTopMoviesCase.execute(TopMoviesType.TOP_100_POPULAR_FILMS).films }
-            val top = async { getTopMoviesCase.execute(TopMoviesType.TOP_250_BEST_FILMS).films }
-            val usaActions = async { getCountryGenreMoviesCase.execute(1, 11, 1).items }
-            val frenchDrams = async { getCountryGenreMoviesCase.execute(3, 2, 1).items }
-            val series = async { getSeriesMoviesCase.execute(1).items }
+                val premieres = async { getPremieresCase.execute().items }
+                val popular = async { getTopMoviesCase.execute(TopMoviesType.TOP_100_POPULAR_FILMS).films }
+                val top = async { getTopMoviesCase.execute(TopMoviesType.TOP_250_BEST_FILMS).films }
+                val usaActions = async { getCountryGenreMoviesCase.execute(1, 11, 1).items }
+                val frenchDrams = async { getCountryGenreMoviesCase.execute(3, 2, 1).items }
+                val series = async { getSeriesMoviesCase.execute(1).items }
 
-            try {
                 awaitAll(premieres, popular, top, usaActions, frenchDrams, series)
                     .runCatching {
                         AllLists(
@@ -58,9 +67,6 @@ class MainViewModel @Inject constructor(
                         Log.e("Movie main", it.stackTraceToString())
                         allListsLiveData.value = LoadDataState.Failure()
                     }
-            } catch (e: Exception) {
-                Log.e("Movie main", e.stackTraceToString())
-            }
         }
     }
 

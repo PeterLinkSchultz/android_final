@@ -8,8 +8,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         tools:context=".presentation.home.HomeFragment">
 
+        <ProgressBar
+            android:id="@+id/loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/text_blue"
+            />
         <com.android.main.presentation.movie.MovieHorizontalListView
             custom:title="@string/premiers"
             custom:isCountable="false"

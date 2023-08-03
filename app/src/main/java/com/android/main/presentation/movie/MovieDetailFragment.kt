@@ -75,7 +75,6 @@ class MovieDetailFragment: Fragment() {
                 binding.movieShortDesc.text = text
             }
         }
-
         movie.staffList.filter {
             it.professionKey == Profession.ACTOR
         }.apply {
@@ -89,6 +88,12 @@ class MovieDetailFragment: Fragment() {
         galleryAdapter.setData(movie.gallery.items)
 
         binding.movieGalleryButtonMore.text = movie.gallery.total.toString()
+        binding.movieGalleryButtonMore.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_movieDetailFragment_to_galleryDetailFragment,
+                bundleOf(KEY_MOVIE_ID to movieId)
+            )
+        }
         movie.similarList.apply {
             binding.movieSimilar.setData(this.items, this.total)
         }
@@ -108,11 +113,20 @@ class MovieDetailFragment: Fragment() {
             binding.buttonAllSeasons.setOnClickListener {
                 findNavController().navigate(
                     R.id.action_movieDetailFragment_to_seriesDetailFragment,
-                    bundleOf(KEY_MOVIE_ID to movieId, KEY_MOVIE_TITLE to movie.movieDetail.nameRu)
+                    bundleOf(
+                        KEY_MOVIE_ID to movieId,
+                        KEY_MOVIE_TITLE to (movie.movieDetail?.nameRu ?: movie.movieDetail?.nameEn)
+                    )
                 )
             }
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
 
     companion object {

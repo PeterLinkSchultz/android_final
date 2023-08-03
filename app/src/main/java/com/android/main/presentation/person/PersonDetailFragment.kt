@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.android.main.R
+import com.android.main.data.staff.Sex
 import com.android.main.data.staff.StaffDto
 import com.android.main.databinding.PersonDetailFragmentBinding
 import com.android.main.di.DaggerAppComponent
 import com.android.main.presentation.LoadDataState
 import com.android.main.presentation.person.PersonFilmographyFragment.Companion.KEY_FILM_LIST
+import com.android.main.presentation.person.PersonFilmographyFragment.Companion.KEY_PERSON_GENDER
+import com.android.main.presentation.person.PersonFilmographyFragment.Companion.KEY_PERSON_NAME
 import com.bumptech.glide.Glide
 import javax.inject.Inject
 
@@ -56,7 +59,9 @@ class PersonDetailFragment: Fragment() {
     }
 
     private fun bindData(data: StaffDto) {
-        binding.staffDetailName.text = data.nameRu ?: data.nameEn
+        val personName = data.nameRu ?: data.nameEn
+
+        binding.staffDetailName.text = personName
         binding.staffDetailRole.text = data.profession
         binding.staffDetailFilmographyCount.text = resources.getQuantityString(
             R.plurals.filmography_count,
@@ -69,12 +74,19 @@ class PersonDetailFragment: Fragment() {
         binding.staffDetailFilmographyButtonMore.setOnClickListener {
             findNavController().navigate(
                 R.id.action_personDetailFragment_to_personFilmographyFragment,
-                bundleOf(KEY_FILM_LIST to data.films)
+                bundleOf(
+                    KEY_FILM_LIST to data.films,
+                    KEY_PERSON_NAME to personName,
+                    KEY_PERSON_GENDER to (data.sex == Sex.MALE)
+                )
             )
         }
     }
 
-    fun navigate() {
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
     }
 
     companion object {

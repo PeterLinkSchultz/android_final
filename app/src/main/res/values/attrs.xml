@@ -6,4 +6,8 @@
         <attr name="hideMoreButton" format="boolean" />
         <attr name="navId" format="reference" />
     </declare-styleable>
+    <declare-styleable name="FilterClickableItemView">
+        <attr name="name" format="string" />
+        <attr name="value" format="string" />
+    </declare-styleable>
 </resources>

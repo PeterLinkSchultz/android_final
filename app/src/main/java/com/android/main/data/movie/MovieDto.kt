@@ -6,11 +6,12 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MovieDto(
     override val kinopoiskId: Int,
-    override val nameRu: String,
+    override val nameRu: String?,
+    override val nameEn: String?,
     override val posterUrl: String,
     override val posterUrlPreview: String,
     override val ratingImdb: Double?,
     override val shortDescription: String?,
     override val description: String?,
-    override val serial: Boolean
+    override val serial: Boolean,
 ) : Movie

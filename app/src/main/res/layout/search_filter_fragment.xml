@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="java.util.Map"/>
+        <variable
+            name="viewModel"
+            type="Map&lt;String, Integer>" />
+        <variable
+            name="keys"
+            type="com.android.main.presentation.search.SearchViewModel.Companion" />
+        <variable
+            name="MovieTypes"
+            type="com.android.main.data.movie.MovieType" />
+        <variable
+            name="countries"
+            type="Map&lt;Integer, String>" />
+        <variable
+            name="genres"
+            type="Map&lt;Integer, String>" />
+        <variable
+            name="period"
+            type="String" />
+    </data>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.android.main.presentation.FragmentTopView
+            custom:title="@string/search_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioGroup
+            android:id="@+id/typesGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginEnd="@dimen/horizontal_margin"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/typeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="@{MovieTypes.values()[viewModel[keys.FILTER_KEY_TYPE]] == MovieTypes.ALL}"
+                android:text="@string/movie_type_all"
+                style="@style/FilterRadioButtonLeft"
+                />
+            <RadioButton
+                android:id="@+id/typeMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="@{MovieTypes.values()[viewModel[keys.FILTER_KEY_TYPE]] == MovieTypes.FILM}"
+                android:text="@string/movie_type_full"
+                style="@style/FilterRadioButtonCenter"
+                />
+            <RadioButton
+                android:id="@+id/typeSerial"
+                android:value="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="@{MovieTypes.values()[viewModel[keys.FILTER_KEY_TYPE]] == MovieTypes.TV_SERIES}"
+                android:text="@string/movie_type_serial"
+                style="@style/FilterRadioButtonRight"
+                />
+        </RadioGroup>
+        <com.android.main.presentation.search.FilterClickableItemView
+            android:id="@+id/filterCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:name="@string/filter_county_title"
+            custom:value="@{viewModel[keys.FILTER_KEY_COUNTRIES] != null ? countries[viewModel[keys.FILTER_KEY_COUNTRIES]] : ``}"
+            />
+        <com.android.main.presentation.search.FilterClickableItemView
+            android:id="@+id/filterGenre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:name="@string/filter_genre_title"
+            custom:value="@{viewModel[keys.FILTER_KEY_GENRES] != null ? genres[viewModel[keys.FILTER_KEY_GENRES]] : ``}"
+            />
+        <com.android.main.presentation.search.FilterClickableItemView
+            android:id="@+id/filterPeriod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:name="@string/filter_period_title"
+            custom:value="@{period}"
+            />
+    </LinearLayout>
+</layout>

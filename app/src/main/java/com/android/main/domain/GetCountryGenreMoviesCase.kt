@@ -13,13 +13,11 @@ class GetCountryGenreMoviesCase @Inject constructor(private val kinopoiskReposit
             override val countries = country
             override val genres = genre
             override val type = MovieType.ALL
-            override val keyword = null
             override val page = page
             override val ratingFrom = null
             override val ratingTo = null
             override val yearFrom = null
             override val yearTo = null
-            override val imdbId = null
         })
     }
 }

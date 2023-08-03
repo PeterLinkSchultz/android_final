@@ -3,123 +3,160 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_search_root">
 
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.android.main.presentation.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_topCategoryListFragment"
-            app:destination="@id/topCategoryListFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_usaActionCategoryListFragment"
-            app:destination="@id/usaActionCategoryListFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_frenchDramaCategoryListFragment"
-            app:destination="@id/frenchDramaCategoryListFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_popularCategoryListFragment"
-            app:destination="@id/popularCategoryListFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_premierCategoryListFragment"
-            app:destination="@id/premierCategoryListFragment" />
-        <action
-            android:id="@+id/action_navigation_home_to_seriesCategoryListFragment"
-            app:destination="@id/seriesCategoryListFragment" />
-    </fragment>
+    <navigation android:id="@+id/navigation_home_root" app:startDestination="@id/navigation_home">
+        <fragment
+            android:id="@+id/navigation_home"
+            android:name="com.android.main.presentation.home.HomeFragment"
+            android:label="@string/title_home"
+            tools:layout="@layout/home_fragment" >
+            <action
+                android:id="@+id/action_navigation_home_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_topCategoryListFragment"
+                app:popUpTo="@id/navigation_home"
+                app:destination="@id/topCategoryListFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_usaActionCategoryListFragment"
+                app:destination="@id/usaActionCategoryListFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_frenchDramaCategoryListFragment"
+                app:destination="@id/frenchDramaCategoryListFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_popularCategoryListFragment"
+                app:destination="@id/popularCategoryListFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_premierCategoryListFragment"
+                app:destination="@id/premierCategoryListFragment" />
+            <action
+                android:id="@+id/action_navigation_home_to_seriesCategoryListFragment"
+                app:destination="@id/seriesCategoryListFragment" />
+        </fragment>
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.android.main.presentation.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.android.main.presentation.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/movieDetailFragment"
-        android:name="com.android.main.presentation.movie.MovieDetailFragment"
-        android:label="MovieDetailFragment" >
-        <argument
-            android:name="movieId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_seriesDetailFragment"
-            app:destination="@id/seriesDetailFragment" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_personDetailFragment"
-            app:destination="@id/personDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/topCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.top.TopCategoryListFragment"
-        android:label="TopCategoryListFragment" >
-        <action
-            android:id="@+id/action_topCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/usaActionCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.usaAction.UsaActionCategoryListFragment"
-        android:label="UsaActionCategoryListFragment" >
-        <action
-            android:id="@+id/action_usaActionCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/frenchDramaCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.frenchDrama.FrenchDramaCategoryListFragment"
-        android:label="FrenchDramaCategoryListFragment" >
-        <action
-            android:id="@+id/action_frenchDramaCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/popularCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.popular.PopularCategoryListFragment"
-        android:label="PopularCategoryListFragment" >
-        <action
-            android:id="@+id/action_popularCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/seriesCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.serires.SeriesCategoryListFragment"
-        android:label="SeriesCategoryListFragment" >
-        <action
-            android:id="@+id/action_seriesCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/premierCategoryListFragment"
-        android:name="com.android.main.presentation.movieCategoryList.premier.PremierCategoryListFragment"
-        android:label="PremierCategoryListFragment" >
-        <action
-            android:id="@+id/action_premierCategoryListFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/seriesDetailFragment"
-        android:name="com.android.main.presentation.movie.SeriesDetailFragment"
-        android:label="SeriesDetailFragment" />
-    <fragment
-        android:id="@+id/personDetailFragment"
-        android:name="com.android.main.presentation.person.PersonDetailFragment"
-        android:label="PersonDetailFragment" >
-        <action
-            android:id="@+id/action_personDetailFragment_to_personFilmographyFragment"
-            app:destination="@id/personFilmographyFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/personFilmographyFragment"
-        android:name="com.android.main.presentation.person.PersonFilmographyFragment"
-        android:label="PersonFilmographyFragment" />
+        <fragment
+            android:id="@+id/navigation_notifications"
+            android:name="com.android.main.presentation.notifications.NotificationsFragment"
+            android:label="@string/title_notifications"
+            tools:layout="@layout/fragment_notifications" />
+        <fragment
+            android:id="@+id/movieDetailFragment"
+            android:name="com.android.main.presentation.movie.MovieDetailFragment"
+            android:label="MovieDetailFragment" >
+            <argument
+                android:name="movieId"
+                app:argType="integer" />
+            <action
+                android:id="@+id/action_movieDetailFragment_to_seriesDetailFragment"
+                app:destination="@id/seriesDetailFragment" />
+            <action
+                android:id="@+id/action_movieDetailFragment_to_personDetailFragment"
+                app:destination="@id/personDetailFragment" />
+            <action
+                android:id="@+id/action_movieDetailFragment_to_galleryDetailFragment"
+                app:destination="@id/galleryDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/topCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.top.TopCategoryListFragment"
+            android:label="TopCategoryListFragment" >
+            <action
+                android:id="@+id/action_topCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/usaActionCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.usaAction.UsaActionCategoryListFragment"
+            android:label="UsaActionCategoryListFragment" >
+            <action
+                android:id="@+id/action_usaActionCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/frenchDramaCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.frenchDrama.FrenchDramaCategoryListFragment"
+            android:label="FrenchDramaCategoryListFragment" >
+            <action
+                android:id="@+id/action_frenchDramaCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/popularCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.popular.PopularCategoryListFragment"
+            android:label="PopularCategoryListFragment" >
+            <action
+                android:id="@+id/action_popularCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/seriesCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.serires.SeriesCategoryListFragment"
+            android:label="SeriesCategoryListFragment" >
+            <action
+                android:id="@+id/action_seriesCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/premierCategoryListFragment"
+            android:name="com.android.main.presentation.movieCategoryList.premier.PremierCategoryListFragment"
+            android:label="PremierCategoryListFragment" >
+            <action
+                android:id="@+id/action_premierCategoryListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/seriesDetailFragment"
+            android:name="com.android.main.presentation.movie.SeriesDetailFragment"
+            android:label="SeriesDetailFragment" />
+        <fragment
+            android:id="@+id/personDetailFragment"
+            android:name="com.android.main.presentation.person.PersonDetailFragment"
+            android:label="PersonDetailFragment" >
+            <action
+                android:id="@+id/action_personDetailFragment_to_personFilmographyFragment"
+                app:destination="@id/personFilmographyFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/personFilmographyFragment"
+            android:name="com.android.main.presentation.person.PersonFilmographyFragment"
+            android:label="PersonFilmographyFragment" >
+            <action
+                android:id="@+id/action_personFilmographyFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/galleryDetailFragment"
+            android:name="com.android.main.presentation.gallery.GalleryDetailFragment"
+            android:label="GalleryDetailFragment" />
+    </navigation>
+    <navigation android:id="@+id/navigation_search_root" app:startDestination="@id/navigation_search">
+        <fragment
+            android:id="@+id/navigation_search"
+            android:name="com.android.main.presentation.search.SearchListFragment"
+            android:label="SearchFragment" >
+            <action
+                android:id="@+id/action_navigation_search_to_searchFilterFragment"
+                app:destination="@id/searchFilterFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/searchFilterFragment"
+            android:name="com.android.main.presentation.search.SearchFilterFragment"
+            android:label="SearchFilterFragment" >
+            <action
+                android:id="@+id/action_searchFilterFragment_to_filterCategoryFragment"
+                app:destination="@id/filterCategoryFragment" />
+            <action
+                android:id="@+id/action_searchFilterFragment_to_filterPeriodFragment"
+                app:destination="@id/filterPeriodFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/filterCategoryFragment"
+            android:name="com.android.main.presentation.search.FilterCategoryFragment"
+            android:label="FilterCategoryFragment" />
+        <fragment
+            android:id="@+id/filterPeriodFragment"
+            android:name="com.android.main.presentation.search.FilterPeriodFragment"
+            android:label="FilterPeriodFragment" />
+    </navigation>
 </navigation>

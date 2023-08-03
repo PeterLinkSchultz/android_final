@@ -1,6 +1,5 @@
 package com.android.main.presentation.person
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.android.main.data.staff.Profession
 import com.android.main.data.staff.StaffMovieDto
@@ -21,6 +20,12 @@ class PersonalFilmographyModelView: ViewModel() {
                     _labels[item.professionKey] = it.plus(1)
                 }
             }
+        }
+    }
+
+    fun getDataByProfession(profession: Profession): List<StaffMovieDto> {
+        return data.filter {
+            item -> item.professionKey == profession
         }
     }
 }

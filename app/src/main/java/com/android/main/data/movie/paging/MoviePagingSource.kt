@@ -6,7 +6,7 @@ import androidx.paging.PagingState
 import com.android.main.data.movie.MovieShortDto
 
 abstract class MoviePagingSource: PagingSource<Int, MovieShortDto>() {
-    final override fun getRefreshKey(state: PagingState<Int, MovieShortDto>): Int? = FIRST_PAGE
+    final override fun getRefreshKey(state: PagingState<Int, MovieShortDto>): Int = FIRST_PAGE
 
     final override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieShortDto> {
         val page = params.key ?: FIRST_PAGE

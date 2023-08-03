@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">main</string>
+    <string name="app_name">Final</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -14,6 +14,7 @@
     <string name="empty" />
     <string name="premiers">Премьеры</string>
     <string name="popular">Популярное</string>
+    <string name="gallery">Галерeя</string>
     <string name="top">Топ 250</string>
     <string name="usa_action">Боевики США</string>
     <string name="french_drama">Драмы Франции</string>
@@ -61,4 +62,46 @@
         <item>ноября</item>
         <item>декабря</item>
     </string-array>
+    <string-array name="filter_country">
+        <item>Россия</item>
+        <item>Великобритания</item>
+        <item>Германия</item>
+        <item>США</item>
+        <item>Франция</item>
+    </string-array>
+    <string-array name="filter_genre">
+        <item>Комедия</item>
+        <item>Мелодрама</item>
+        <item>Боевик</item>
+        <item>Вестерн</item>
+        <item>Драма</item>
+    </string-array>
+    <string name="filter_period_from">с %d</string>
+    <string name="filter_period_to">по %d</string>
+    <string name="filter_period_from_to">по %d</string>
+    <string name="filter_county_title">Страна</string>
+    <string name="filter_genre_title">Жанр</string>
+    <string name="filter_period_title">Год</string>
+    <string name="profession_actor_male">Актер</string>
+    <string name="profession_actor_female">Актриса</string>
+    <string name="profession_himself">Актер: играет себя</string>
+    <string name="profession_herself">Актриса: играет себя</string>
+    <string name="profession_editor">Монтажер</string>
+    <string name="profession_design">Художник</string>
+    <string name="profession_composer">Композитор</string>
+    <string name="profession_operator">Оператор</string>
+    <string name="profession_writer">Сценарист</string>
+    <string name="profession_translator">Переводчик</string>
+    <string name="profession_voice_director">Звукорежиссер</string>
+    <string name="profession_producer">Продюсер</string>
+    <string name="profession_director">Режиссер</string>
+    <string name="profession_hrono_titr_male">Актер дубляжа</string>
+    <string name="profession_hrono_titr_female">Актриса дубляжа</string>
+    <string name="search_hint">Фильмы, актёры, режиссёры</string>
+    <string name="movie_type_all">Все</string>
+    <string name="movie_type_full">Фильмы</string>
+    <string name="movie_type_serial">Сериалы</string>
+    <string name="search_settings">Настройки поиска</string>
+    <string name="enter_country">Введите страну</string>
+    <string name="enter_genre">Введите жанр</string>
 </resources>
