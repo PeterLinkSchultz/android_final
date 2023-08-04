@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.android.main.databinding.YearPickerItemViewBinding
 
-class YearPickerGridAdapter(context: Context, val list: Array<Int>, val binding: YearPickerItemViewBinding):
+class YearPickerGridAdapter(context: Context, val list: Array<Int>, ):
     ArrayAdapter<Int>(context, 0, list) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        binding.year.text = list[position].toString()
-
-        return binding.root
-    }
+//    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+//        val binding = YearPickerItemViewBinding.inflate(LayoutInflater.from(context))
+//
+//        binding.year.text = list[position].toString()
+//
+//        return binding.root
+//    }
 }

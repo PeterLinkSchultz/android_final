@@ -44,17 +44,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             style="@style/LinkButton"
             />
-        <androidx.recyclerview.widget.RecyclerView
+        <GridView
             android:id="@+id/yearList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:numColumns="3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/currentRange"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/year_picker_item_view"
-            tools:itemCount="6"
-            />
+            tools:listitem="@layout/year_picker_item_view" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/yearList"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/currentRange"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--            tools:listitem="@layout/year_picker_item_view"-->
+<!--            tools:itemCount="6"-->
+<!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

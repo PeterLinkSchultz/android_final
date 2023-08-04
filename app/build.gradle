@@ -52,7 +52,7 @@ dependencies {
 
     //ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$liveDataVersion"
-    implementation "androidx.fragment:fragment-ktx:1.6.0"
+    implementation "androidx.fragment:fragment-ktx:1.6.1"
 
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveDataVersion"

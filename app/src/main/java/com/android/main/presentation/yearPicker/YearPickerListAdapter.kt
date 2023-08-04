@@ -31,8 +31,8 @@ class YearPickerListAdapter(val context: Context): RecyclerView.Adapter<YearPick
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val items = yearList[position]
-        val viewBinding = YearPickerItemViewBinding.inflate(LayoutInflater.from(context))
-        holder.binding.gridView.adapter = YearPickerGridAdapter(context, items, viewBinding)
+        // val viewBinding = YearPickerItemViewBinding.inflate(LayoutInflater.from(context))
+        // holder.binding.gridView.adapter = YearPickerGridAdapter(context, items, viewBinding)
         // holder.binding.year.text = yearList[position].toString()
     }
 

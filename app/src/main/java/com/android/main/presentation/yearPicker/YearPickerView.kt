@@ -17,23 +17,41 @@ class YearPickerView
 ): ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var binding = YearPickerViewBinding.inflate(LayoutInflater.from(context))
-    private var listAdapter: YearPickerListAdapter? = null
+    private var listAdapter: YearPickerGridAdapter? = null
+
+    private val yearList = mutableListOf<Array<Int>>()
+
+    init {
+        val tempList = mutableListOf<Int>()
+        for (i in YearPickerListAdapter.FROM..YearPickerListAdapter.TO) {
+            tempList.add(i)
+        }
+        val tempArray = tempList.toIntArray()
+
+        while(tempArray.isNotEmpty()) {
+            yearList.add(tempArray.slice(0..11).toTypedArray())
+        }
+    }
 
     init {
         addView(binding.root)
 
-        with(binding.yearList) {
-            listAdapter = YearPickerListAdapter(context)
-            adapter = listAdapter
-            layoutManager = GridLayoutManager(this@YearPickerView.context, 4, RecyclerView.HORIZONTAL, false)
-            addItemDecoration(VerticalGridItemDecorator(context, 8))
-        }
+        // binding.yearList.adapter = YearPickerGridAdapter(context, yearList[0])
 
-        binding.buttonNext.setOnClickListener {
-            binding.yearList.smoothScrollToPosition(19)
-        }
-        binding.buttonPrev.setOnClickListener {
-            binding.yearList.smoothScrollToPosition(0)
-        }
+
+
+//        with(binding.yearList) {
+//            listAdapter = YearPickerListAdapter(context)
+//            adapter = listAdapter
+//            // layoutManager = GridLayoutManager(this@YearPickerView.context, 4, RecyclerView.HORIZONTAL, false)
+//            addItemDecoration(VerticalGridItemDecorator(context, 8))
+//        }
+
+//        binding.buttonNext.setOnClickListener {
+//            binding.yearList.smoothScrollToPosition(19)
+//        }
+//        binding.buttonPrev.setOnClickListener {
+//            binding.yearList.smoothScrollToPosition(0)
+//        }
     }
 }
